@@ -77,14 +77,14 @@ def calculate_difference(df1, df2):
 
 
 def check_err_storico_previsioni():
-    path_file_cfg = os.path.abspath(os.path.join(__file__, "..", "..", "config", "config_WB.ini"))
+    path_file_cfg = os.path.abspath(os.path.join(__file__, "..", "config", "config_WB.ini"))
     cfg = configparser.RawConfigParser()
     cfg.read(path_file_cfg)
     days = int(cfg['CHECK_PREV']['days'])
 
     suffix = '_previsto.csv'
-    prefix_path_previsioni = '/home/osboxes/Scrivania/covid_veneto_data/'
-    path_storico = '/home/osboxes/Scrivania/covid_veneto_data/input_covid.csv'
+    prefix_path_previsioni = os.path.abspath(os.path.join(__file__, "..", "covid_veneto_data"))
+    path_storico = os.path.abspath(os.path.join(__file__, "..", "covid_veneto_data", "input_covid.csv"))
 
     name_dict_s = {'terapia_intensiva': 'T_I_s', 'totale_positivi': 'T_P_s', 'dimessi_guariti': 'G_s',
                    'deceduti': 'D_s', 'totale_casi': 'T_C_s'}
@@ -99,8 +99,6 @@ def check_err_storico_previsioni():
                         'gamma_individuati_std', 'R_0_individuati_std', 'totale_casi_offset', 'deceduti_offset',
                         'guariti_offset', 'totale_positivi_offset', 'terapia_intensiva_offset', 'R_0_offset']
     dict_DF_err = {}
-
-    path = os.path.abspath(advConf.INPUT_PATH)
 
     '''path locale e path di macchina'''
     df_storico = pd.read_csv(path_storico, sep=';')

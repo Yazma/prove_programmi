@@ -8,7 +8,7 @@ COMMASPACE = ', '
 
 
 def send_mail(text_for_mail):
-    path_file_cfg = os.path.abspath(os.path.join(__file__, "..", "..", "config", "config_WB.ini"))
+    path_file_cfg = os.path.abspath(os.path.join(__file__, "..", "config", "config_WB.ini"))
     cfg = configparser.RawConfigParser()
     cfg.read(path_file_cfg)
     sender = cfg['MAIL']['sender']
